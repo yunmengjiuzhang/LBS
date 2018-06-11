@@ -1,9 +1,19 @@
 package wangfeixixi.lbs;
 
 public class RouteInfo {
-    private float distance;
-    private float taxiCost;
-    private int duration;
+    public float distance;
+    public float taxiCost;
+    public int duration;
+
+    public RouteInfo(float distance, float taxiCost, int duration) {
+        this.distance = distance;
+        this.taxiCost = taxiCost;
+        this.duration = duration;
+    }
+
+    public RouteInfo() {
+
+    }
 
     public float getDistance() {
         return distance;

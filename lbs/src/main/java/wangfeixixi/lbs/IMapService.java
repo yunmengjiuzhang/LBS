@@ -36,7 +36,7 @@ public interface IMapService {
     /**
      * 移除标记
      */
-    boolean removeMarker(String key);
+    void removeMarker(String key);
 
     /**
      * 移除所有标记

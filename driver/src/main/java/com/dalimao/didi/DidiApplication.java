@@ -2,8 +2,8 @@ package com.dalimao.didi;
 
 import android.app.Application;
 
+import com.dalimao.didi.common.CrashHandler;
 import com.dalimao.didi.common.http.HttpConfig;
-import com.squareup.leakcanary.LeakCanary;
 
 import c.b.BP;
 import cn.bmob.push.BmobPush;
@@ -22,12 +22,13 @@ public class DidiApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
+        CrashHandler.getInstance().init(this, "11111");
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
         HttpConfig.useTestConfig();
         initBmob();
         initPush();
@@ -36,7 +37,7 @@ public class DidiApplication extends Application {
     }
 
     /**
-     *  初始化 bmob 配置
+     * 初始化 bmob 配置
      */
     private void initBmob() {
         BmobConfig config = new BmobConfig.Builder(this)
@@ -47,7 +48,7 @@ public class DidiApplication extends Application {
     }
 
     /**
-     *  初始化推送服务
+     * 初始化推送服务
      */
     private void initPush() {
 
@@ -68,6 +69,8 @@ public class DidiApplication extends Application {
     }
 
     public static DidiApplication getInstance() {
-      return  instance;
-    };
+        return instance;
+    }
+
+    ;
 }

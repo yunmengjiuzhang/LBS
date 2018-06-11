@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
@@ -54,4 +55,8 @@ dependencies {
     compile 'cn.bmob.android:bmob-push:0.8'
     compile 'cn.bmob.android:bmob-sdk:3.4.2'
     compile project(path: ':lbs')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
