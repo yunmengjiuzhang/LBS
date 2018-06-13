@@ -95,10 +95,6 @@ public class MapUtils {
         return bd_lat_lon;
     }
 
-
-//    public static
-
-
 //    //调用百度地图客户端
 //  if(MapUtil.isInstallByRead("com.baidu.BaiduMap")){
 //        MapUtil.getBaiduMapUri(this,"39.98871 ","116.43234","39.91441","116.40405");
