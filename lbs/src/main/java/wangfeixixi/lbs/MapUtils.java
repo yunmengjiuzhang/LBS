@@ -3,13 +3,14 @@ package wangfeixixi.lbs;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.Toast;
 
 import java.io.File;
 
 /**
  * 地图开启工具类，主要是为了开启第三方地图
  */
-public class Utilsdda {
+public class MapUtils {
 
     /**
      * 获取打开百度地图应用
@@ -94,6 +95,7 @@ public class Utilsdda {
         return bd_lat_lon;
     }
 
+
 //    public static
 
 
@@ -106,6 +108,16 @@ public class Utilsdda {
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //        startActivity(intent);
 //    }
+
+    public static void jumpMapClient(Context context, String originLat, String originLon, String desLat, String desLon) {
+        if (isInstallByRead("com.autonavi.minimap")) {
+            getGaoDeMapUri(context, originLat, originLon, desLat, desLon);
+        } else if (isInstallByRead("com.baidu.BaiduMap")) {
+            getBaiduMapUri(context, originLat, originLon, desLat, desLon);
+        } else {
+            Toast.makeText(context, "您手机没有高德，百度，高德app哦！", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
 ////调用高德地图客户端
