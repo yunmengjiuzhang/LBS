@@ -70,6 +70,8 @@ public interface IMapService {
      */
     void moveCamera(LocationInfo locationInfo1, LocationInfo locationInfo2);
 
+    void startOnceLocation();
+
     void setMySensor();
 
     /**

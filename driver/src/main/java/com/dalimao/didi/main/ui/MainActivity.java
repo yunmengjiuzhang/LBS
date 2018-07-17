@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements IMainView {
     private DrawerLayout mDrawerLayout;
     private boolean firstLocation = true;
     private float mCurrentCost;
-
+    private Button location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +104,15 @@ public class MainActivity extends Activity implements IMainView {
         mUser = findViewById(R.id.im_user);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mLoadingArea = findViewById(R.id.loading_area);
+
+
+        location = (Button) findViewById(R.id.location_bt);
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMapLayer.startOnceLocation();
+            }
+        });
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -173,7 +182,7 @@ public class MainActivity extends Activity implements IMainView {
 
                     @Override
                     public void onError(int rCode) {
-                        ToastUtil.show(getApplicationContext(),String.valueOf(rCode));
+                        ToastUtil.show(getApplicationContext(), String.valueOf(rCode));
                     }
                 });
             }
@@ -249,6 +258,8 @@ public class MainActivity extends Activity implements IMainView {
         });
     }
 
+    private int time = 1;
+
     private void initMap() {
         mMapLayer = new GaodeMapService(this);
         // 设置我的位置图标记
@@ -259,6 +270,10 @@ public class MainActivity extends Activity implements IMainView {
         mMapLayer.setLocationChangeListener(new OnLocationListener() {
             @Override
             public void onLocationChange(LocationInfo locationInfo) {
+                location.setText("" + (time++));
+                mMapLayer.moveCamera(locationInfo, 14);
+
+
                 LogUtil.d(TAG, "onLocationChange");
                 LocationInfo locationInfoCurrent = new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude);
                 if (firstLocation || mMapLayer.calculateLineDistance(locationInfo, locationInfoCurrent) > 100) {
@@ -298,6 +313,7 @@ public class MainActivity extends Activity implements IMainView {
         mMapLayer.onResume();
         mMainPresenter.subscribe();
         mMainPresenter.getLocalAccount();
+        mMapLayer.startOnceLocation();
     }
 
     @Override

@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MapUtils.iml" filepath="$PROJECT_DIR$/MapUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/LBS.iml" filepath="$PROJECT_DIR$/.idea/LBS.iml" />
+      <module fileurl="file://D:\workSpace\test\LBS\MapUtils.iml" filepath="D:\workSpace\test\LBS\MapUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/driver/driver.iml" filepath="$PROJECT_DIR$/driver/driver.iml" />
       <module fileurl="file://$PROJECT_DIR$/lbs/lbs.iml" filepath="$PROJECT_DIR$/lbs/lbs.iml" />
       <module fileurl="file://$PROJECT_DIR$/passenger/passenger.iml" filepath="$PROJECT_DIR$/passenger/passenger.iml" />

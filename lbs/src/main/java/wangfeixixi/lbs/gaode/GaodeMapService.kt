@@ -28,10 +28,10 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     private val TAG = "GaodeMapService"
 
     //位置定位对象
-    private var mlocationClient: AMapLocationClient? = null
+    var mlocationClient: AMapLocationClient? = null
     // 地图视图对象
     private val mapView: MapView
-    private var myLocationStyle: MyLocationStyle? = null
+    var myLocationStyle: MyLocationStyle? = null
     // 地图管理对象
     private val aMap: AMap
     // 地图位置变化回调对象
@@ -43,6 +43,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     private val mRouteSearch: RouteSearch by lazy {
         RouteSearch(mCtx)
     }
+    lateinit var locationOption: AMapLocationClientOption
 
     init {
         // 创建地图对象
@@ -51,7 +52,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         aMap = mapView.map
         // 创建定位对象
         mlocationClient = AMapLocationClient(context)
-        val locationOption: AMapLocationClientOption = AMapLocationClientOption()
+        locationOption = AMapLocationClientOption()
         //设置为高精度定位模式
         locationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy
         //设置定位参数
@@ -60,6 +61,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
 
     override fun setLocationRes(res: Int) {
         myLocationStyle = MyLocationStyle()
+        myLocationStyle!!.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE)
         myLocationStyle!!.myLocationIcon(BitmapDescriptorFactory.fromResource(res))// 设置小蓝点的图标
         myLocationStyle!!.strokeColor(Color.BLACK)// 设置圆形的边框颜色
         myLocationStyle!!.radiusFillColor(Color.argb(100, 0, 0, 180))// 设置圆形的填充颜色
@@ -123,7 +125,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
             }
         })
         // 设置默认定位按钮是否显示，这里先不想业务使用方开放
-        aMap.uiSettings.isMyLocationButtonEnabled = true
+        aMap.uiSettings.isMyLocationButtonEnabled = false
         // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false，这里先不想业务使用方开放
         aMap.isMyLocationEnabled = true
     }
@@ -132,6 +134,20 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         return mapView
     }
 
+    override fun startOnceLocation() {
+//获取一次定位结果：
+//该方法默认为false。
+        locationOption.setOnceLocation(true);
+
+//获取最近3s内精度最高的一次定位结果：
+//设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+        locationOption.setOnceLocationLatest(true);
+        //给定位客户端对象设置定位参数
+        mlocationClient?.setLocationOption(locationOption);
+//启动定位
+        mlocationClient?.startLocation();
+
+    }
 
     override fun addMyLocationMarker(locationInfo: LocationInfo, bitmap: Bitmap) {
         addOrUpdateMarker(locationInfo, bitmap)

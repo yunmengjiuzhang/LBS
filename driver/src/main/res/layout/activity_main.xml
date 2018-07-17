@@ -27,6 +27,14 @@
                 android:layout_marginTop="45dp"
                 android:layout_toEndOf="@+id/location_errInfo_text" />
 
+            <Button
+                android:id="@+id/location_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Location" />
+
             <TextView
                 android:id="@+id/location_errInfo_text"
                 android:layout_width="match_parent"

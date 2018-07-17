@@ -36,13 +36,13 @@ dependencies {
 //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 
-    compile 'com.amap.api:3dmap:5.0.0'//3D地图
+    compile 'com.amap.api:3dmap:5.1.0'//3D地图
 
 //    compile 'com.amap.api:map2d:5.0.0'//   2D地图
 
 //    compile 'com.amap.api:navi-3dmap:5.0.0'//   导航
 
-    compile 'com.amap.api:search:5.0.0'//    搜索
+    compile 'com.amap.api:search:5.1.0'//    搜索
 
     compile 'com.amap.api:location:3.3.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version" // 定位
