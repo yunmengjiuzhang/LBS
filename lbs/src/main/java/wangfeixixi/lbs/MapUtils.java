@@ -111,7 +111,7 @@ public class MapUtils {
         } else if (isInstallByRead("com.baidu.BaiduMap")) {
             getBaiduMapUri(context, originLat, originLon, desLat, desLon);
         } else {
-            Toast.makeText(context, "您手机没有高德，百度，高德app哦！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "您手机没有高德地图或百度地图哦！", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -56,7 +56,16 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         //设置为高精度定位模式
         locationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy
         //设置定位参数
-        mlocationClient?.setLocationOption(locationOption)
+//        mlocationClient?.setLocationOption(locationOption)
+        //获取一次定位结果：
+//该方法默认为false。
+        locationOption.setOnceLocation(true);
+
+//获取最近3s内精度最高的一次定位结果：
+//设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+        locationOption.setOnceLocationLatest(true);
+        //给定位客户端对象设置定位参数
+        mlocationClient?.setLocationOption(locationOption);
     }
 
     override fun setLocationRes(res: Int) {
@@ -107,7 +116,6 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     }
 
     private fun setUpMap() {
-
         if (myLocationStyle != null) {
             aMap.myLocationStyle = myLocationStyle
         }
@@ -135,18 +143,8 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     }
 
     override fun startOnceLocation() {
-//获取一次定位结果：
-//该方法默认为false。
-        locationOption.setOnceLocation(true);
-
-//获取最近3s内精度最高的一次定位结果：
-//设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
-        locationOption.setOnceLocationLatest(true);
-        //给定位客户端对象设置定位参数
-        mlocationClient?.setLocationOption(locationOption);
 //启动定位
         mlocationClient?.startLocation();
-
     }
 
     override fun addMyLocationMarker(locationInfo: LocationInfo, bitmap: Bitmap) {
