@@ -13,6 +13,7 @@ import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.maps.*
 import com.amap.api.maps.model.*
 import com.amap.api.navi.AMapNavi
+import com.amap.api.navi.AMapNaviListener
 import com.amap.api.navi.enums.AimLessMode
 import com.amap.api.services.core.AMapException
 import com.amap.api.services.core.LatLonPoint
@@ -155,7 +156,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
      * CAMERA_AND_SPECIALROAD_DETECTED，巡航时返回电子眼和特殊道路设施信息。
      * updateAimlessModeStatistics
      */
-    fun startAimlessMode(context: Context, listener: NaviListener) {
+    fun startAimlessMode(context: Context, listener: AMapNaviListener) {
         val navi = AMapNavi.getInstance(context);
         navi.startAimlessMode(AimLessMode.CAMERA_AND_SPECIALROAD_DETECTED);
         navi.setAMapNaviListener(listener)
