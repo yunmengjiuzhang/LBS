@@ -12,6 +12,8 @@ import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.maps.*
 import com.amap.api.maps.model.*
+import com.amap.api.navi.AMapNavi
+import com.amap.api.navi.enums.AimLessMode
 import com.amap.api.services.core.AMapException
 import com.amap.api.services.core.LatLonPoint
 import com.amap.api.services.help.Inputtips
@@ -142,9 +144,21 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         return mapView
     }
 
+    //启动定位
     override fun startOnceLocation() {
-//启动定位
         mlocationClient?.startLocation();
+    }
+
+    /**
+     * CAMERA_DETECTED, 巡航时返回电子眼信息。
+     * SPECIALROAD_DETECTED, 巡航时返回特殊道路设施信息。
+     * CAMERA_AND_SPECIALROAD_DETECTED，巡航时返回电子眼和特殊道路设施信息。
+     * updateAimlessModeStatistics
+     */
+    fun startAimlessMode(context: Context, listener: NaviListener) {
+        val navi = AMapNavi.getInstance(context);
+        navi.startAimlessMode(AimLessMode.CAMERA_AND_SPECIALROAD_DETECTED);
+        navi.setAMapNaviListener(listener)
     }
 
     override fun addMyLocationMarker(locationInfo: LocationInfo, bitmap: Bitmap) {

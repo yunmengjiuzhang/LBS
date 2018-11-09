@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.dalimao.didi"
         minSdkVersion 18
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -61,32 +61,32 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
+//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+//        exclude group: 'com.android.support', module: 'support-annotations'
+//    })
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'junit:junit:4.12'
     //compile ('com.squareup.okhttp3:okhttp:3.6.0') {true}
    // compile ('com.google.code.gson:gson:2.3.1') {true}
    // compile ('io.reactivex:rxjava:1.0.14') { true}
    // compile ('io.reactivex:rxandroid:1.0.1') {true}
-    compile ('com.github.liuguangli:VerificationCodeInput:1.3')
+    implementation ('com.github.liuguangli:VerificationCodeInput:1.3')
 
     //compile project(':corelibrary');
     //以下SDK开发者请根据需要自行选择
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.0：请务必查看下面注释[1]
-    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.0'
 
     //bmob-push：Bmob的推送包
-    compile 'cn.bmob.android:bmob-push:0.8'
+    implementation 'cn.bmob.android:bmob-push:0.8'
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
-    compile 'cn.bmob.android:http-legacy:1.0'
+    implementation 'cn.bmob.android:http-legacy:1.0'
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
 
-    compile project(path: ':lbs')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation project(path: ':lbs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()
