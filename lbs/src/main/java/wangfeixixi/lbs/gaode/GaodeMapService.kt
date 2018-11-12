@@ -69,6 +69,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         locationOption.setOnceLocationLatest(true);
         //给定位客户端对象设置定位参数
         mlocationClient?.setLocationOption(locationOption);
+
     }
 
     override fun setLocationRes(res: Int) {
@@ -76,7 +77,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         myLocationStyle!!.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE)
         myLocationStyle!!.myLocationIcon(BitmapDescriptorFactory.fromResource(res))// 设置小蓝点的图标
         myLocationStyle!!.strokeColor(Color.BLACK)// 设置圆形的边框颜色
-        myLocationStyle!!.radiusFillColor(Color.argb(100, 0, 0, 180))// 设置圆形的填充颜色
+        myLocationStyle!!.radiusFillColor(Color.TRANSPARENT)// 设置圆形的填充颜色
         // myLocationStyle.anchor(int,int)//设置小蓝点的锚点
         myLocationStyle!!.strokeWidth(1.0f)// 设置圆形的边框粗细
     }
