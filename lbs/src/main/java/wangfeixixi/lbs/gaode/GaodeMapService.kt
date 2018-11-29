@@ -91,7 +91,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
                 Log.d(TAG, "onLocationChanged")
                 if (firstLocation) {
                     firstLocation = false
-                    aMap.animateCamera(CameraUpdateFactory.zoomTo(16f))
+                    aMap.animateCamera(CameraUpdateFactory.zoomTo(18f))
                 }
                 mCity = aMapLocation.city
                 mLocationListener?.onLocationChange(LocationInfo(aMapLocation.poiName, aMapLocation.address, aMapLocation.latitude, aMapLocation.longitude))
@@ -104,7 +104,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
                 Log.d(TAG, "onLocationChanged")
                 if (firstLocation) {
                     firstLocation = false
-                    aMap.animateCamera(CameraUpdateFactory.zoomTo(16f))
+                    aMap.animateCamera(CameraUpdateFactory.zoomTo(18f))
                 }
 
                 mCity = aMapLocation.city

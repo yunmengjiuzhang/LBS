@@ -22,6 +22,12 @@ public class LocationInfo implements Serializable {
         key = String.valueOf(latitude) + String.valueOf(longitude);
     }
 
+    public LocationInfo(String key, double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.key = key;
+    }
+
     public LocationInfo(String name, String address, double latitude, double longitude) {
         this.name = name;
         this.address = address;
