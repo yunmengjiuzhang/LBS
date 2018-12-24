@@ -58,17 +58,20 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         locationOption = AMapLocationClientOption()
         //设置为高精度定位模式
         locationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy
+
+        locationOption.setInterval(1000)
         //设置定位参数
 //        mlocationClient?.setLocationOption(locationOption)
         //获取一次定位结果：
 //该方法默认为false。
-        locationOption.setOnceLocation(true);
+//        locationOption.setOnceLocation(true);
 
 //获取最近3s内精度最高的一次定位结果：
 //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
-        locationOption.setOnceLocationLatest(true);
+//        locationOption.setOnceLocationLatest(true);
         //给定位客户端对象设置定位参数
         mlocationClient?.setLocationOption(locationOption);
+        mlocationClient?.startLocation()
 
     }
 
