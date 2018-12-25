@@ -143,6 +143,8 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         aMap.uiSettings.isMyLocationButtonEnabled = false
         // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false，这里先不想业务使用方开放
         aMap.isMyLocationEnabled = true
+        aMap.uiSettings.isZoomControlsEnabled = false
+        aMap.uiSettings.isZoomGesturesEnabled = false
     }
 
     override fun getMap(): View {
