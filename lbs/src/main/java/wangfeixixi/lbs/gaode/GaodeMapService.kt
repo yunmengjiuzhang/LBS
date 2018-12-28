@@ -53,6 +53,9 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         mapView = MapView(context)
         // 获取地图管理器
         aMap = mapView.map
+    }
+
+    fun initLocation(context: Context) {
         // 创建定位对象
         mlocationClient = AMapLocationClient(context)
         locationOption = AMapLocationClientOption()
@@ -72,8 +75,8 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         //给定位客户端对象设置定位参数
         mlocationClient?.setLocationOption(locationOption);
         mlocationClient?.startLocation()
-
     }
+
 
     override fun setLocationRes(res: Int) {
         myLocationStyle = MyLocationStyle()
@@ -142,7 +145,7 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         // 设置默认定位按钮是否显示，这里先不想业务使用方开放
         aMap.uiSettings.isMyLocationButtonEnabled = false
         // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false，这里先不想业务使用方开放
-        aMap.isMyLocationEnabled = true
+        aMap.isMyLocationEnabled = false
         aMap.uiSettings.isZoomControlsEnabled = false
         aMap.uiSettings.isZoomGesturesEnabled = false
     }
