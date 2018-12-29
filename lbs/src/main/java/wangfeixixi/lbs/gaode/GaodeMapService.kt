@@ -286,6 +286,10 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         mMarkersHashMap.clear()
     }
 
+    override fun setPointToCenter(x: Int, y: Int) {
+        aMap.setPointToCenter(x, y)
+    }
+
     override fun onCreate(savedState: Bundle?) {
         super.onCreate(savedState)
         mapView.onCreate(savedState)

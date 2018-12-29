@@ -74,6 +74,8 @@ public interface IMapService {
 
     void setMySensor();
 
+    void setPointToCenter(int x, int y);
+
     /**
      * 驾车线路规划
      */
