@@ -48,7 +48,7 @@ public class LocationInfo implements Serializable {
     public LocationInfo(String key, double latitude, double longitude, float rotation) {
         this.latitude = latitude;
         this.longitude = longitude;
-        key = key;
+        this.key = key;
         this.rotation = rotation;
     }
 }
