@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
+import com.amap.api.maps.model.LatLng;
+
 /**
  * 地图的抽象接口
  * Created by liuguangli on 17/3/18.
@@ -75,6 +77,14 @@ public interface IMapService {
     void setMySensor();
 
     void setPointToCenter(int x, int y);
+
+//    void rotateEnable(boolean enable);
+
+    void changeBearing(float bearing);
+
+    void changeLatLng(LatLng latLng);
+
+    void changeTilt(float tilt);
 
     /**
      * 驾车线路规划

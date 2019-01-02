@@ -27,7 +27,6 @@ import java.util.*
  * 高德地图的实现
  */
 class GaodeMapService(context: Context) : BaseMapService(context) {
-
     private val TAG = "GaodeMapService"
 
     //位置定位对象
@@ -284,6 +283,18 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     override fun clearAllMarker() {
         aMap.clear()
         mMarkersHashMap.clear()
+    }
+
+    override fun changeBearing(bearing: Float) {
+        aMap.animateCamera(CameraUpdateFactory.changeBearing(bearing))
+    }
+
+    override fun changeLatLng(latLng: LatLng?) {
+        aMap.animateCamera(CameraUpdateFactory.changeLatLng(latLng))
+    }
+
+    override fun changeTilt(tilt: Float) {
+        aMap.animateCamera(CameraUpdateFactory.changeTilt(tilt))
     }
 
     override fun setPointToCenter(x: Int, y: Int) {
