@@ -1,6 +1,8 @@
 package wangfeixixi.lbs;
 
 
+import com.amap.api.maps.model.animation.Animation;
+
 import java.io.Serializable;
 
 /**
@@ -15,6 +17,8 @@ public class LocationInfo implements Serializable {
     public double latitude;
     public double longitude;
     public float rotation = 0;
+
+    public Animation animation;
 
     public LocationInfo(double latitude, double longitude) {
         this.latitude = latitude;
@@ -50,5 +54,12 @@ public class LocationInfo implements Serializable {
         this.longitude = longitude;
         this.key = key;
         this.rotation = rotation;
+    }
+
+    public LocationInfo(String key, double latitude, double longitude, Animation animation) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.key = key;
+        this.animation = animation;
     }
 }

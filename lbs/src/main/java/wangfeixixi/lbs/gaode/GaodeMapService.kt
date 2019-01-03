@@ -12,6 +12,7 @@ import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.maps.*
 import com.amap.api.maps.model.*
+import com.amap.api.maps.model.animation.Animation
 import com.amap.api.navi.AMapNavi
 import com.amap.api.navi.AMapNaviListener
 import com.amap.api.navi.enums.AimLessMode
@@ -190,11 +191,20 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
             val marker = aMap.addMarker(options)
             marker.rotateAngle = rotation.toFloat()
             mMarkersHashMap.put(locationInfo.key, marker)
+            locationInfo.animation?.let {
+                marker.setAnimation(locationInfo.animation)
+                marker.startAnimation()
+            }
         }
     }
 
     override fun removeMarker(key: String) {
         mMarkersHashMap[key]?.remove()
+    }
+
+    override fun clearAllMarker() {
+        aMap.clear()
+        mMarkersHashMap.clear()
     }
 
     override fun poiSearch(key: String, listener: OnSearchedListener) {
@@ -277,12 +287,6 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
 
     override fun calculateLineDistance(start: LocationInfo, end: LocationInfo): Float {
         return AMapUtils.calculateLineDistance(LatLng(start.latitude, start.longitude), LatLng(end.latitude, end.longitude))
-    }
-
-
-    override fun clearAllMarker() {
-        aMap.clear()
-        mMarkersHashMap.clear()
     }
 
     override fun changeBearing(bearing: Float) {
