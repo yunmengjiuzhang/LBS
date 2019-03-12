@@ -1,6 +1,5 @@
 package com.dalimao.mytaxi.main.view
 
-import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -14,38 +13,27 @@ import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
-
+import cn.bmob.push.BmobPush
+import cn.bmob.v3.Bmob
+import cn.bmob.v3.BmobInstallation
 import com.dalimao.mytaxi.MyTaxiApplication
 import com.dalimao.mytaxi.R
 import com.dalimao.mytaxi.account.model.AccountManagerImpl
 import com.dalimao.mytaxi.account.model.IAccountManager
 import com.dalimao.mytaxi.account.view.PhoneInputDialog
 import com.dalimao.mytaxi.common.databus.RxBus
-import com.dalimao.mytaxi.common.http.IHttpClient
 import com.dalimao.mytaxi.common.http.api.API
 import com.dalimao.mytaxi.common.http.impl.OkHttpClientImpl
 import com.dalimao.mytaxi.common.storage.SharedPreferencesDao
 import com.dalimao.mytaxi.common.util.DevUtil
 import com.dalimao.mytaxi.common.util.LogUtil
 import com.dalimao.mytaxi.common.util.ToastUtil
-import com.dalimao.mytaxi.main.model.IMainManager
 import com.dalimao.mytaxi.main.model.MainMangerImpl
 import com.dalimao.mytaxi.main.model.bean.Order
 import com.dalimao.mytaxi.main.presenter.IMainPresenter
 import com.dalimao.mytaxi.main.presenter.MainPresenterImpl
-
-import java.util.ArrayList
-
-import cn.bmob.push.BmobPush
-import cn.bmob.v3.Bmob
-import cn.bmob.v3.BmobInstallation
-import wangfeixixi.lbs.IMapService
-import wangfeixixi.lbs.LocationInfo
-import wangfeixixi.lbs.OnLocationListener
-import wangfeixixi.lbs.OnRouteListener
-import wangfeixixi.lbs.OnSearchedListener
-import wangfeixixi.lbs.RouteInfo
-import wangfeixixi.lbs.gaode.GaodeMapService
+import wangfeixixi.lbs.*
+import java.util.*
 
 
 /**
@@ -106,7 +94,7 @@ class MainActivity : AppCompatActivity(), IMainView {
         mPresenter!!.loginByToken()
 
         // 地图服务
-        mLbsLayer = GaodeMapService(this)
+        mLbsLayer = MapServiceUtils.switchMapService(0,this)
         mLbsLayer!!.onCreate(savedInstanceState)
         mLbsLayer!!.setLocationChangeListener { locationInfo ->
             // 记录起点

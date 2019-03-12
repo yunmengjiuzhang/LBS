@@ -23,11 +23,6 @@ public interface IMapService {
      */
     void setLocationRes(int res);
 
-    void justLocationListener(OnLocationListener listener);
-
-    //    void addOrUpdateMarker(LocationInfo locationInfo, int res);
-
-
     void addInfoWindowMarker(LocationInfo locationInfo, Bitmap bitmap);
 
 

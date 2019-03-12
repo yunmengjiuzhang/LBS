@@ -5,23 +5,35 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.dalimao.didi.R;
 
+import wangfeixixi.lbs.IMapService;
 import wangfeixixi.lbs.LocationInfo;
+import wangfeixixi.lbs.MapServiceUtils;
 import wangfeixixi.lbs.OnLocationListener;
 import wangfeixixi.lbs.justlocal.Localmanager;
 
 public class TempActivity extends AppCompatActivity {
 
-//    private IMapService iMapService;
+    //    private IMapService iMapService;
     private Intent serviceIntent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.temp_activity);
+        FrameLayout viewById = findViewById(R.id.rl);
+
+        IMapService iMapService = MapServiceUtils.switchMapService(0, this);
+//        IMapService iMapService = MapServiceUtils.switchMapServic2(0, this);
+
+        iMapService.onCreate(savedInstanceState);
+
+        viewById.addView(iMapService.getMap());
+
         serviceIntent = new Intent(this, ServiceTemp.class);
 
 

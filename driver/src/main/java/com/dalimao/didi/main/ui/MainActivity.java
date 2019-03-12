@@ -37,11 +37,11 @@ import java.util.List;
 
 import wangfeixixi.lbs.IMapService;
 import wangfeixixi.lbs.LocationInfo;
+import wangfeixixi.lbs.MapServiceUtils;
 import wangfeixixi.lbs.OnLocationListener;
 import wangfeixixi.lbs.OnRouteListener;
 import wangfeixixi.lbs.OnSearchedListener;
 import wangfeixixi.lbs.RouteInfo;
-import wangfeixixi.lbs.gaode.GaodeMapService;
 
 
 public class MainActivity extends Activity implements IMainView {
@@ -261,7 +261,7 @@ public class MainActivity extends Activity implements IMainView {
     private int time = 1;
 
     private void initMap() {
-        mMapLayer = new GaodeMapService(this);
+        mMapLayer = MapServiceUtils.switchMapService(0, this);
         // 设置我的位置图标记
         mMapLayer.setLocationRes(R.mipmap.navi_map_gps_locked);
         mDriverMarkerBit = BitmapFactory.decodeResource(this.getResources(),

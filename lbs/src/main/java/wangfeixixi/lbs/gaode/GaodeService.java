@@ -3,6 +3,7 @@ package wangfeixixi.lbs.gaode;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
@@ -44,7 +46,6 @@ import wangfeixixi.lbs.BaseMapService;
 import wangfeixixi.lbs.LbsSensorListner;
 import wangfeixixi.lbs.LocationInfo;
 import wangfeixixi.lbs.OnInfoWindowMarkerListener;
-import wangfeixixi.lbs.OnLocationListener;
 import wangfeixixi.lbs.OnRouteListener;
 import wangfeixixi.lbs.OnSearchedListener;
 import wangfeixixi.lbs.RouteInfo;
@@ -117,42 +118,6 @@ public class GaodeService extends BaseMapService {
         myLocationStyle.radiusFillColor(Color.TRANSPARENT);// 设置圆形的填充颜色
         // myLocationStyle.anchor(int,int)//设置小蓝点的锚点
         myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
-    }
-
-    @Override
-    public void justLocationListener(final OnLocationListener listener) {
-        // 创建定位对象
-        mlocationClient = new AMapLocationClient(mCtx);
-        locationOption = new AMapLocationClientOption();
-        //设置为高精度定位模式
-        locationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
-
-        locationOption.setInterval(1000);
-        //设置定位参数
-        //        mlocationClient?.setLocationOption(locationOption)
-        //获取一次定位结果：
-        //该方法默认为false。
-        //locationOption.setOnceLocation(true);
-
-        //获取最近3s内精度最高的一次定位结果：
-        //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
-        //locationOption.setOnceLocationLatest(true);
-        //给定位客户端对象设置定位参数
-        mlocationClient.setLocationOption(locationOption);
-        mlocationClient.startLocation();
-        mlocationClient.setLocationListener(new AMapLocationListener() {
-            @Override
-            public void onLocationChanged(AMapLocation aMapLocation) {
-                Log.d(TAG, "onLocationChanged");
-                listener.onLocationChange(new LocationInfo(aMapLocation.getPoiName(), aMapLocation.getAddress(), aMapLocation.getLatitude(), aMapLocation.getLongitude()));
-            }
-        });
-
-        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
-        // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
-        // 在定位结束后，在合适的生命周期调用onDestroy()方法
-        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-        mlocationClient.startLocation();
     }
 
     @Override
@@ -411,6 +376,43 @@ public class GaodeService extends BaseMapService {
     @Override
     public float calculateLineDistance(LocationInfo start, LocationInfo end) {
         return AMapUtils.calculateLineDistance(new LatLng(start.latitude, start.longitude), new LatLng(end.latitude, end.longitude));
+    }
+
+    private void setUpMap() {
+        if (myLocationStyle != null) {
+            aMap.setMyLocationStyle(myLocationStyle);
+        }
+        // 设置地图激活（加载监听）
+        aMap.setLocationSource(new LocationSource() {
+            @Override
+            public void activate(OnLocationChangedListener onLocationChangedListener) {
+                mLocationChangeListener = onLocationChangedListener;
+                Log.d(TAG, "activate");
+            }
+
+            @Override
+            public void deactivate() {
+                if (mlocationClient != null) {
+                    mlocationClient.stopLocation();
+                    mlocationClient.onDestroy();
+                    mlocationClient = null;
+                }
+            }
+        });
+        // 设置默认定位按钮是否显示，这里先不想业务使用方开放
+        UiSettings uiSettings = aMap.getUiSettings();
+        uiSettings.setMyLocationButtonEnabled(false);
+        uiSettings.setZoomControlsEnabled(false);
+        uiSettings.setZoomGesturesEnabled(false);
+        aMap.setMyLocationEnabled(false);
+        // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false，这里先不想业务使用方开放
+    }
+
+    @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+        mapView.onCreate(savedState);
+        setUpMap();
     }
 
     @Override
