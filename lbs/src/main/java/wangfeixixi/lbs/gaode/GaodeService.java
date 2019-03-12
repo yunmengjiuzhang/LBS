@@ -43,6 +43,7 @@ import java.util.List;
 import wangfeixixi.lbs.BaseMapService;
 import wangfeixixi.lbs.LbsSensorListner;
 import wangfeixixi.lbs.LocationInfo;
+import wangfeixixi.lbs.OnInfoWindowMarkerListener;
 import wangfeixixi.lbs.OnLocationListener;
 import wangfeixixi.lbs.OnRouteListener;
 import wangfeixixi.lbs.OnSearchedListener;
@@ -175,6 +176,46 @@ public class GaodeService extends BaseMapService {
                 marker.startAnimation();
             }
         }
+    }
+
+    @Override
+    public void addInfoWindowMarker(LocationInfo locationInfo, Bitmap bitmap) {
+        LatLng latLng = new LatLng(locationInfo.latitude, locationInfo.longitude);
+        // 如果已经存在则更新角度、位置   // 如果不存在则创建
+        Marker storedMarker = mMarkersHashMap.get(locationInfo.key);
+        if (storedMarker != null) {
+            storedMarker.showInfoWindow();
+            storedMarker.setPosition(latLng);
+            storedMarker.setTitle(locationInfo.name);
+            storedMarker.setSnippet(locationInfo.address);
+            storedMarker.setRotateAngle(locationInfo.rotation);
+        } else {
+            MarkerOptions options = new MarkerOptions();
+            options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+            options.anchor(0.5f, 0.5f);
+            options.position(latLng);
+            options.title(locationInfo.name);
+            Marker marker = aMap.addMarker(options);
+            marker.setTitle(locationInfo.name);
+            marker.setSnippet(locationInfo.address);
+            marker.showInfoWindow();
+            marker.setRotateAngle(0);
+            mMarkersHashMap.put(locationInfo.key, marker);
+            if (locationInfo.animation != null) {
+                marker.setAnimation(locationInfo.animation);
+                marker.startAnimation();
+            }
+        }
+    }
+
+    @Override
+    public void setMarkerInfoWindowClickListener(final OnInfoWindowMarkerListener listener) {
+        aMap.setOnInfoWindowClickListener(new AMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                listener.onClick(marker.getTitle(), marker.getSnippet());
+            }
+        });
     }
 
     @Override

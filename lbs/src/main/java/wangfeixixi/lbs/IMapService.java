@@ -25,7 +25,13 @@ public interface IMapService {
 
     void justLocationListener(OnLocationListener listener);
 
-//    void addOrUpdateMarker(LocationInfo locationInfo, int res);
+    //    void addOrUpdateMarker(LocationInfo locationInfo, int res);
+
+
+    void addInfoWindowMarker(LocationInfo locationInfo, Bitmap bitmap);
+
+
+    void setMarkerInfoWindowClickListener(OnInfoWindowMarkerListener listener);
 
     /**
      * 添加，更新标记点，包括位置、角度（通过 id 识别）
@@ -109,4 +115,6 @@ public interface IMapService {
     void onPause();
 
     void onDestroy();
+
+
 }
