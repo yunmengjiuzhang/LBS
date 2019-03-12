@@ -87,6 +87,9 @@ dependencies {
 
     implementation project(path: ':lbs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+
+    implementation 'com.amap.api:location:4.5.0'//定位
 }
 repositories {
     mavenCentral()

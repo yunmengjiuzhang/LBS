@@ -14,6 +14,7 @@ public abstract class BaseMapService implements IMapService {
     public OnLocationListener mLocationListener;
 
 
+
     public BaseMapService(Context context) {
         mCtx = context;
     }

@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="wangfeixixi.lbs" />
+    package="wangfeixixi.lbs">
+
+    <application>
+
+
+    </application>
+
+</manifest>
+

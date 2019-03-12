@@ -12,7 +12,6 @@ import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.maps.*
 import com.amap.api.maps.model.*
-import com.amap.api.maps.model.animation.Animation
 import com.amap.api.navi.AMapNavi
 import com.amap.api.navi.AMapNaviListener
 import com.amap.api.navi.enums.AimLessMode
@@ -28,6 +27,7 @@ import java.util.*
  * 高德地图的实现
  */
 class GaodeMapService(context: Context) : BaseMapService(context) {
+
     private val TAG = "GaodeMapService"
 
     //位置定位对象
@@ -48,12 +48,17 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
     }
     lateinit var locationOption: AMapLocationClientOption
 
+
+//    private var isStartLocation: Boolean = false;
+
+
     init {
-        // 创建地图对象
-        mapView = MapView(context)
+// 创建地图对象
+        mapView = MapView(mCtx)
         // 获取地图管理器
         aMap = mapView.map
     }
+
 
     fun initLocation(context: Context) {
         // 创建定位对象
@@ -75,8 +80,52 @@ class GaodeMapService(context: Context) : BaseMapService(context) {
         //给定位客户端对象设置定位参数
         mlocationClient?.setLocationOption(locationOption);
         mlocationClient?.startLocation()
+
+
     }
 
+    override fun justLocationListener(listener: OnLocationListener?) {
+        // 创建定位对象
+        mlocationClient = AMapLocationClient(mCtx)
+        locationOption = AMapLocationClientOption()
+        //设置为高精度定位模式
+        locationOption.locationMode = AMapLocationClientOption.AMapLocationMode.Hight_Accuracy
+
+        locationOption.setInterval(1000)
+        //设置定位参数
+        //        mlocationClient?.setLocationOption(locationOption)
+        //获取一次定位结果：
+        //该方法默认为false。
+        //locationOption.setOnceLocation(true);
+
+        //获取最近3s内精度最高的一次定位结果：
+        //设置setOnceLocationLatest(boolean b)接口为true，启动定位时SDK会返回最近3s内精度最高的一次定位结果。如果设置其为true，setOnceLocation(boolean b)接口也会被设置为true，反之不会，默认为false。
+        //locationOption.setOnceLocationLatest(true);
+        //给定位客户端对象设置定位参数
+        mlocationClient?.setLocationOption(locationOption);
+        mlocationClient?.startLocation()
+
+
+        //设置监听器
+        mlocationClient?.setLocationListener { aMapLocation ->
+            // 定位变化位置
+//            mLocationChangeListener?.let {
+//                it.onLocationChanged(aMapLocation)
+//                Log.d(TAG, "onLocationChanged")
+//                listener?.onLocationChange(LocationInfo(aMapLocation.poiName, aMapLocation.address, aMapLocation.latitude, aMapLocation.longitude))
+//            }
+
+            Log.d(TAG, "onLocationChanged")
+            listener?.onLocationChange(LocationInfo(aMapLocation.poiName, aMapLocation.address, aMapLocation.latitude, aMapLocation.longitude))
+        }
+
+        // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
+        // 在定位结束后，在合适的生命周期调用onDestroy()方法
+        // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
+        mlocationClient?.startLocation()
+
+    }
 
     override fun setLocationRes(res: Int) {
         myLocationStyle = MyLocationStyle()
