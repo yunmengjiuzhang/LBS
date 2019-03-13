@@ -149,7 +149,6 @@ public class GaodeService extends BaseMapService {
         // 如果已经存在则更新角度、位置   // 如果不存在则创建
         Marker storedMarker = mMarkersHashMap.get(locationInfo.key);
         if (storedMarker != null) {
-            storedMarker.showInfoWindow();
             storedMarker.setPosition(latLng);
             storedMarker.setTitle(locationInfo.name);
             storedMarker.setSnippet(locationInfo.address);
@@ -163,7 +162,6 @@ public class GaodeService extends BaseMapService {
             Marker marker = aMap.addMarker(options);
             marker.setTitle(locationInfo.name);
             marker.setSnippet(locationInfo.address);
-            marker.showInfoWindow();
             marker.setRotateAngle(0);
             mMarkersHashMap.put(locationInfo.key, marker);
             if (locationInfo.animation != null) {
@@ -171,6 +169,7 @@ public class GaodeService extends BaseMapService {
                 marker.startAnimation();
             }
         }
+        storedMarker.showInfoWindow();
     }
 
     @Override

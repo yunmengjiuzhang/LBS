@@ -1,6 +1,7 @@
 package com.dalimao.didi.splash;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +10,14 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.dalimao.didi.R;
+import com.dalimao.didi.common.utils.ToastUtil;
 
+import wangfeixixi.lbs.Gps;
+import wangfeixixi.lbs.GpsUtil;
 import wangfeixixi.lbs.IMapService;
 import wangfeixixi.lbs.LocationInfo;
 import wangfeixixi.lbs.MapServiceUtils;
+import wangfeixixi.lbs.OnInfoWindowMarkerListener;
 import wangfeixixi.lbs.OnLocationListener;
 import wangfeixixi.lbs.justlocal.Localmanager;
 
@@ -35,6 +40,24 @@ public class TempActivity extends AppCompatActivity {
         viewById.addView(iMapService.getMap());
 
         serviceIntent = new Intent(this, ServiceTemp.class);
+
+        Gps gps = GpsUtil.gps84_To_Gcj02(30.329193793402776, 121.31807400173611);
+
+        LocationInfo locationInfo = new LocationInfo();
+        locationInfo.longitude = gps.longitude;
+        locationInfo.latitude = gps.latitude;
+        locationInfo.name = "创新中心";
+        locationInfo.address = "5G&V2X停车场";
+        iMapService.addOrUpdateMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
+        iMapService.addMyLocationMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
+        iMapService.moveCamera(locationInfo, 18);
+        iMapService.addInfoWindowMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
+        iMapService.setMarkerInfoWindowClickListener(new OnInfoWindowMarkerListener() {
+            @Override
+            public void onClick(String title, String msg) {
+                ToastUtil.show(TempActivity.this, msg);
+            }
+        });
 
 
         final TextView tv_log = findViewById(R.id.tv_log);
