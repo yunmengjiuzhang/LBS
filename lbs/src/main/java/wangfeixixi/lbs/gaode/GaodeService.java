@@ -146,30 +146,31 @@ public class GaodeService extends BaseMapService {
     @Override
     public void addInfoWindowMarker(LocationInfo locationInfo, Bitmap bitmap) {
         LatLng latLng = new LatLng(locationInfo.latitude, locationInfo.longitude);
-        // 如果已经存在则更新角度、位置   // 如果不存在则创建
-        Marker storedMarker = mMarkersHashMap.get(locationInfo.key);
-        if (storedMarker != null) {
-            storedMarker.setPosition(latLng);
-            storedMarker.setTitle(locationInfo.name);
-            storedMarker.setSnippet(locationInfo.address);
-            storedMarker.setRotateAngle(locationInfo.rotation);
-        } else {
-            MarkerOptions options = new MarkerOptions();
-            options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
-            options.anchor(0.5f, 0.5f);
-            options.position(latLng);
-            options.title(locationInfo.name);
-            Marker marker = aMap.addMarker(options);
-            marker.setTitle(locationInfo.name);
-            marker.setSnippet(locationInfo.address);
-            marker.setRotateAngle(0);
-            mMarkersHashMap.put(locationInfo.key, marker);
-            if (locationInfo.animation != null) {
-                marker.setAnimation(locationInfo.animation);
-                marker.startAnimation();
-            }
-        }
-        storedMarker.showInfoWindow();
+//        // 如果已经存在则更新角度、位置   // 如果不存在则创建
+//        Marker marker = mMarkersHashMap.get(locationInfo.key);
+//        if (marker != null) {
+//            marker.setPosition(latLng);
+//            marker.setTitle(locationInfo.name);
+//            marker.setSnippet(locationInfo.address);
+//            marker.setRotateAngle(locationInfo.rotation);
+//        } else {
+//
+//            mMarkersHashMap.put(locationInfo.key, marker);
+//            if (locationInfo.animation != null) {
+//                marker.setAnimation(locationInfo.animation);
+//                marker.startAnimation();
+//            }
+//        }
+        MarkerOptions options = new MarkerOptions();
+        options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+        options.anchor(0.5f, 0.5f);
+        options.position(latLng);
+        options.title(locationInfo.name);
+        Marker marker = aMap.addMarker(options);
+        marker.setTitle(locationInfo.name);
+        marker.setSnippet(locationInfo.address);
+        marker.setRotateAngle(0);
+        marker.showInfoWindow();
     }
 
     @Override
