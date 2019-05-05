@@ -4,7 +4,6 @@ import com.dalimao.didi.order.model.bean.Order;
 
 /**
  * 订单相关模块
- * Created by liuguangli on 17/3/25.
  */
 
 public interface IOrderManager {
