@@ -11,10 +11,6 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
 import cn.bmob.v3.BmobInstallation;
 
-/**
- * Created by liuguangli on 17/3/4.
- */
-
 public class DidiApplication extends Application {
     private static DidiApplication instance;
     private String pushClientId;
@@ -23,12 +19,7 @@ public class DidiApplication extends Application {
     public void onCreate() {
         super.onCreate();
         CrashHandler.getInstance().init(this, "11111");
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            // This process is dedicated to LeakCanary for heap analysis.
-//            // You should not init your app in this process.
-//            return;
-//        }
-//        LeakCanary.install(this);
+
         HttpConfig.useTestConfig();
         initBmob();
         initPush();
