@@ -28,12 +28,6 @@ import wangfeixixi.lbs.justlocal.CheckPermissionsActivity;
 
 /**
  * 高精度定位模式功能演示
- *
- * @author hongming.wang
- * @创建时间： 2015年11月24日 下午5:22:42
- * @项目名称： AMapLocationDemo2.x
- * @文件名称: Hight_Accuracy_Activity.java
- * @类型名称: Hight_Accuracy_Activity
  */
 public class GpsTestActivity extends CheckPermissionsActivity
         implements
