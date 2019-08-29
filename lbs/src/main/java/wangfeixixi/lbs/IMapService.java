@@ -28,15 +28,8 @@ public interface IMapService {
 
     void setMarkerInfoWindowClickListener(OnInfoWindowMarkerListener listener);
 
-    /**
-     * 添加，更新标记点，包括位置、角度（通过 id 识别）
-     */
-    void addOrUpdateMarker(LocationInfo locationInfo, Bitmap bitmap);
 
-    /**
-     * 添加自己位置的标记
-     */
-    void addMyLocationMarker(LocationInfo locationInfo, Bitmap bitmap);
+    void updateMainMakerAndOtherMakerOneTime(LocationInfo[] locationInfos, Bitmap mainBitmap, Bitmap otherBitmaps, int timeSecond);
 
     /**
      * 移除标记

@@ -40,12 +40,12 @@ dependencies {
 
 //    compile 'com.amap.api:map2d:5.0.0'//   2D地图
 
-    compile 'com.amap.api:navi-3dmap:5.0.0'//   导航
+    api 'com.amap.api:navi-3dmap:5.0.0'//   导航
 
-    implementation 'com.amap.api:search:5.1.0'//    搜索
+    api 'com.amap.api:search:5.1.0'//    搜索
 
-    implementation 'com.amap.api:location:4.5.0'//定位
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api 'com.amap.api:location:4.5.0'//定位
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()
