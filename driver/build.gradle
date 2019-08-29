@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-
 android {
     compileSdkVersion 26
     buildToolsVersion '28.0.3'
@@ -60,7 +58,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':lbs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
@@ -85,11 +84,9 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
 
-    implementation project(path: ':lbs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 
-    implementation 'com.amap.api:location:4.5.0'//定位
+//    implementation 'com.amap.api:location:4.5.0'//定位
 }
 repositories {
     mavenCentral()

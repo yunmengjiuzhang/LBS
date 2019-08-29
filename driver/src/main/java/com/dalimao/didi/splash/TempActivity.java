@@ -48,8 +48,8 @@ public class TempActivity extends AppCompatActivity {
         locationInfo.latitude = gps.latitude;
         locationInfo.name = "创新中心";
         locationInfo.address = "5G&V2X停车场";
-        iMapService.addOrUpdateMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
-        iMapService.addMyLocationMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
+//        iMapService.addOrUpdateMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
+//        iMapService.addMyLocationMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
         iMapService.moveCamera(locationInfo, 18);
         iMapService.addInfoWindowMarker(locationInfo, BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_launcher));
         iMapService.setMarkerInfoWindowClickListener(new OnInfoWindowMarkerListener() {
