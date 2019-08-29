@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 29
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.dalimao.mytaxi"
-        minSdkVersion 15
-        targetSdkVersion 26
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -33,6 +33,10 @@ android {
         }
 
     }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
 }
 
@@ -43,19 +47,20 @@ dependencies {
 //    })
 
     implementation project(path: ':lbs')
-//    implementation 'com.github.wangfeixixi:LBS:v0.3.2'
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+//    implementation 'com.github.wangfeixixi:LBS:v0.3.3'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'junit:junit:4.12'
-    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
-    implementation 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.1.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation ('com.github.liuguangli:VerificationCodeInput:1.5')
-    implementation 'io.reactivex:rxjava:1.0.14'
-    implementation 'io.reactivex:rxandroid:1.0.1'
+    implementation 'io.reactivex:rxjava:1.3.8'
+    implementation 'io.reactivex:rxandroid:1.2.1'
 
 
     //bmob-push：Bmob的推送包
     implementation 'cn.bmob.android:bmob-push:0.8'
-    implementation 'cn.bmob.android:bmob-sdk:3.4.2'
+    implementation 'cn.bmob.android:bmob-sdk:3.5.0'
 }
 repositories {
     mavenCentral()

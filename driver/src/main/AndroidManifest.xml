@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dalimao.didi">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-     
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 推送所需的权限 -->
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".DidiApplication"
@@ -29,33 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="49e30f3e6733bc4b6aa15bff396be502" />
-        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
-        <service android:name="com.amap.api.location.APSService" />
-
-        <!--<activity-->
-            <!--android:name=".splash.GpsTestActivity"-->
-            <!--android:theme="@style/Theme.AppCompat.NoActionBar">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-        <activity
-            android:name=".splash.TempActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".splash.TempActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".splash.SplashActvity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <!--        <service android:name="com.amap.api.location.APSService" />-->
+
+        <!--<activity-->
+        <!--android:name=".splash.GpsTestActivity"-->
+        <!--android:theme="@style/Theme.AppCompat.NoActionBar">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN" />-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <activity android:name=".splash.SplashActvity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -72,22 +47,9 @@
             <!--</intent-filter>-->
         </activity>
 
-        <service
-            android:name="cn.bmob.push.lib.service.PushService"
-            android:exported="true"
-            android:label="PushService"
-            android:process=":bmobpush">
-            <intent-filter>
-                <action android:name="cn.bmob.push.lib.service.PushService" />
-            </intent-filter>
-        </service>
-
-        <service android:name=".splash.ServiceTemp" />
-
-        <!-- 用于进程保活 -->
-        <service
-            android:name="cn.bmob.push.lib.service.PushNotifyService"
-            android:process=":bmobpush"></service>
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="49e30f3e6733bc4b6aa15bff396be502" />
 
         <receiver android:name="cn.bmob.push.PushReceiver">
             <intent-filter>
@@ -101,26 +63,70 @@
             </intent-filter>
         </receiver>
 
-        <!-- 第四部中创建的消息接收器，在这里进行注册 -->
         <receiver android:name=".common.push.PushReceiver">
             <intent-filter>
                 <action android:name="cn.bmob.push.action.MESSAGE" />
             </intent-filter>
         </receiver>
 
-        <!-- 接收心跳和唤醒的广播，要和PushService运行在同个进程 -->
-        <receiver
-            android:name="cn.bmob.push.PushNotifyReceiver"
+        <!-- 用于进程保活 -->
+        <!--        <service-->
+        <!--            android:name="cn.bmob.push.lib.service.PushNotifyService"-->
+        <!--            android:process=":bmobpush"></service>-->
+
+        <service
+            android:name="cn.bmob.push.lib.service.PushService"
+            android:exported="true"
+            android:label="PushService"
             android:process=":bmobpush">
             <intent-filter>
-
-                <!-- 接收心跳广播的action -->
-                <action android:name="cn.bmob.push.action.HEARTBEAT" />
-                <!-- 接收唤醒广播的action -->
-                <action android:name="cn.bmob.push.action.NOTIFY" />
+                <action android:name="cn.bmob.push.lib.service.PushService" />
             </intent-filter>
-        </receiver>
-        <activity android:name="cn.bmob.pay.v3.act.PayAct" />
+        </service>
+
+        <!-- 第四部中创建的消息接收器，在这里进行注册 -->
+        <service android:name=".splash.ServiceTemp" />
+
+        <!--        &lt;!&ndash; 接收心跳和唤醒的广播，要和PushService运行在同个进程 &ndash;&gt;-->
+        <!--        <receiver-->
+        <!--            android:name="cn.bmob.push.PushNotifyReceiver"-->
+        <!--            android:process=":bmobpush">-->
+        <!--            <intent-filter>-->
+
+        <!--                &lt;!&ndash; 接收心跳广播的action &ndash;&gt;-->
+        <!--                <action android:name="cn.bmob.push.action.HEARTBEAT" />-->
+        <!--                &lt;!&ndash; 接收唤醒广播的action &ndash;&gt;-->
+        <!--                <action android:name="cn.bmob.push.action.NOTIFY" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
+        <!--        <activity android:name="cn.bmob.pay.v3.act.PayAct" />-->
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 推送所需的权限 -->
+    <uses-permission
+        android:name="android.permission.INTERACT_ACROSS_USERS_FULL"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
 
 </manifest>

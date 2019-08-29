@@ -10,6 +10,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        targetSdkVersion 27
 
     }
 
@@ -40,9 +41,9 @@ dependencies {
 
 //    compile 'com.amap.api:map2d:5.0.0'//   2D地图
 
-    implementation 'com.amap.api:navi-3dmap:5.5.0_3dmap5.7.0'//   导航
+    implementation 'com.amap.api:navi-3dmap:6.9.0_3dmap6.9.2'//   导航
 
-    implementation 'com.amap.api:search:5.2.1'//    搜索
+    implementation 'com.amap.api:search:6.9.2'//    搜索
 
     implementation 'com.amap.api:location:4.7.0'//定位
 }
