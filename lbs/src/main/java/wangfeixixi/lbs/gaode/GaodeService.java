@@ -42,7 +42,6 @@ import com.amap.api.services.route.WalkRouteResult;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import wangfeixixi.lbs.BaseMapService;
 import wangfeixixi.lbs.LbsSensorListner;
@@ -165,16 +164,18 @@ public class GaodeService extends BaseMapService {
         smoothMarker.setPoints(points);
         // 设置滑动的总时间
         smoothMarker.setTotalDuration(marker.animTime);
+        smoothMarker.setRotate(marker.rotate);
         // 开始滑动
         smoothMarker.startSmoothMove();
-
 
     }
 
     @Override
     public void removeMarker(String key) {
-        if (mMarkersHashMap.get(key) != null)
+        if (mMarkersHashMap.get(key) != null) {
             mMarkersHashMap.get(key).destroy();
+            mMarkersHashMap.remove(key);
+        }
     }
 
     @Override

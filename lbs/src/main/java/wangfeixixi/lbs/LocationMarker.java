@@ -3,7 +3,7 @@ package wangfeixixi.lbs;
 import android.graphics.Bitmap;
 
 public class LocationMarker {
-//    /**
+    //    /**
 //     * B本车
 //     * O其他车：id
 //     */
@@ -17,4 +17,5 @@ public class LocationMarker {
      */
     public int animTime;
 
+    public float rotate;
 }
