@@ -292,8 +292,8 @@ public class GaodeService extends BaseMapService {
     }
 
     @Override
-    public void changeLatLng(LatLng latLng) {
-        aMap.animateCamera(CameraUpdateFactory.changeLatLng(latLng));
+    public void changeLatLng(LocationInfo locationInfo) {
+        aMap.animateCamera(CameraUpdateFactory.changeLatLng(new LatLng(locationInfo.latitude, locationInfo.longitude)));
     }
 
     @Override

@@ -78,7 +78,7 @@ public interface IMapService {
 
     void changeBearing(float bearing);
 
-    void changeLatLng(LatLng latLng);
+    void changeLatLng(LocationInfo locationInfo);
 
     void changeTilt(float tilt);
 
