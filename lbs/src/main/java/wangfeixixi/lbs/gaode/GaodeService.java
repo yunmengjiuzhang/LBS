@@ -129,18 +129,19 @@ public class GaodeService extends BaseMapService {
             updateMakerOneTimeSmooth(marker);
 
 //        计算无用marker
-        ArrayList<String> keys_be_destry = new ArrayList<>();
-        for (Map.Entry<String, SmoothMoveMarker> entry : mMarkersHashMap.entrySet()) {
-            String key = entry.getKey();
-            for (LocationMarker marker : markers)
-                if (!key.equals(marker.key)) {
-                    keys_be_destry.add(key);
-                }
-        }
-
-//        移除没有信息的marker
-        for (String key : keys_be_destry)
-            removeMarker(key);
+//        ArrayList<String> keys_be_destry = new ArrayList<>();
+//
+//        for (Map.Entry<String, SmoothMoveMarker> entry : mMarkersHashMap.entrySet()) {
+//            String key = entry.getKey();
+//            for (LocationMarker marker : markers)
+//                if (!key.equals(marker.key)) {
+//                    keys_be_destry.add(key);
+//                }
+//        }
+//
+////        移除没有信息的marker
+//        for (String key : keys_be_destry)
+//            removeMarker(key);
     }
 
     private void updateMakerOneTimeSmooth(LocationMarker marker) {
