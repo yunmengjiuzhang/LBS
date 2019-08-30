@@ -29,7 +29,7 @@ public interface IMapService {
     void setMarkerInfoWindowClickListener(OnInfoWindowMarkerListener listener);
 
 
-    void updateMainMakerAndOtherMakerOneTime(LocationInfo[] locationInfos, Bitmap mainBitmap, Bitmap otherBitmaps, int timeSecond);
+    void updateMarkers(LocationMarker[] markers);
 
     /**
      * 移除标记

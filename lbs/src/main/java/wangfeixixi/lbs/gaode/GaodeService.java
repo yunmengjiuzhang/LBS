@@ -47,6 +47,7 @@ import java.util.Map;
 import wangfeixixi.lbs.BaseMapService;
 import wangfeixixi.lbs.LbsSensorListner;
 import wangfeixixi.lbs.LocationInfo;
+import wangfeixixi.lbs.LocationMarker;
 import wangfeixixi.lbs.OnInfoWindowMarkerListener;
 import wangfeixixi.lbs.OnRouteListener;
 import wangfeixixi.lbs.OnSearchedListener;
@@ -123,22 +124,16 @@ public class GaodeService extends BaseMapService {
     }
 
     @Override
-    public void updateMainMakerAndOtherMakerOneTime(LocationInfo[] locationInfos, Bitmap mainBitmap, Bitmap otherBitmaps, int timeSecond) {
-//        设置marker
-        for (int i = 0; i < locationInfos.length - 1; i++) {
-            if (i == 0) {
-                updateMakerOneTimeSmooth(locationInfos[i], mainBitmap, timeSecond);
-            } else {
-                updateMakerOneTimeSmooth(locationInfos[i], otherBitmaps, timeSecond);
-            }
-        }
+    public void updateMarkers(LocationMarker... markers) {
+        for (LocationMarker marker : markers)
+            updateMakerOneTimeSmooth(marker);
 
 //        计算无用marker
         ArrayList<String> keys_be_destry = new ArrayList<>();
         for (Map.Entry<String, SmoothMoveMarker> entry : mMarkersHashMap.entrySet()) {
             String key = entry.getKey();
-            for (LocationInfo info : locationInfos)
-                if (!key.equals(info.key)) {
+            for (LocationMarker marker : markers)
+                if (!key.equals(marker.key)) {
                     keys_be_destry.add(key);
                 }
         }
@@ -148,11 +143,11 @@ public class GaodeService extends BaseMapService {
             removeMarker(key);
     }
 
-    private void updateMakerOneTimeSmooth(LocationInfo locationInfo, Bitmap bitmap, int timeSecond) {
+    private void updateMakerOneTimeSmooth(LocationMarker marker) {
         List<LatLng> points = new ArrayList<>();
-        LatLng endLatLng = new LatLng(locationInfo.latitude, locationInfo.longitude);
+        LatLng endLatLng = new LatLng(marker.latitude, marker.longitude);
 
-        SmoothMoveMarker smoothMarker = mMarkersHashMap.get(locationInfo.key);
+        SmoothMoveMarker smoothMarker = mMarkersHashMap.get(marker.key);
         if (smoothMarker != null) {
             LatLng startLatLng = smoothMarker.getPosition();
             points.add(startLatLng);
@@ -162,13 +157,13 @@ public class GaodeService extends BaseMapService {
             points.add(endLatLng);
             smoothMarker = new SmoothMoveMarker(aMap);
             // 设置滑动的图标
-            smoothMarker.setDescriptor(BitmapDescriptorFactory.fromBitmap(bitmap));
-            mMarkersHashMap.put(locationInfo.key, smoothMarker);
+            smoothMarker.setDescriptor(BitmapDescriptorFactory.fromBitmap(marker.icon));
+            mMarkersHashMap.put(marker.key, smoothMarker);
         }
         // 设置滑动的轨迹左边点
         smoothMarker.setPoints(points);
         // 设置滑动的总时间
-        smoothMarker.setTotalDuration(timeSecond);
+        smoothMarker.setTotalDuration(marker.animTime);
         // 开始滑动
         smoothMarker.startSmoothMove();
 
