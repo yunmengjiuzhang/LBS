@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.amap.api:location:4.7.0'//定位
 
 
-    implementation 'com.github.wangfeixixi:LBS:v0.3.8'
+//    implementation 'com.github.wangfeixixi:LBS:v0.3.9'
 }
 repositories {
     mavenCentral()

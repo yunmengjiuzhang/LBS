@@ -156,12 +156,12 @@ public class GaodeService extends BaseMapService {
             points.add(endLatLng);
             points.add(endLatLng);
             smoothMarker = new SmoothMoveMarker(aMap);
-            // 设置滑动的图标
-            smoothMarker.setDescriptor(BitmapDescriptorFactory.fromBitmap(marker.icon));
             mMarkersHashMap.put(marker.key, smoothMarker);
         }
         // 设置滑动的轨迹左边点
         smoothMarker.setPoints(points);
+        // 设置滑动的图标
+        smoothMarker.setDescriptor(BitmapDescriptorFactory.fromBitmap(marker.icon));
         // 设置滑动的总时间
         smoothMarker.setTotalDuration(marker.animTime);
         smoothMarker.setRotate(marker.rotate);
