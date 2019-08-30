@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LBS.iml" filepath="$PROJECT_DIR$/.idea/LBS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/driver/LBS-driver.iml" filepath="$PROJECT_DIR$/driver/LBS-driver.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lbs/LBS-lbs.iml" filepath="$PROJECT_DIR$/lbs/LBS-lbs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/passenger/LBS-passenger.iml" filepath="$PROJECT_DIR$/passenger/LBS-passenger.iml" />
-      <module fileurl="file://$PROJECT_DIR$/driver/driver.iml" filepath="$PROJECT_DIR$/driver/driver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LBS.iml" filepath="$PROJECT_DIR$/LBS.iml" />
       <module fileurl="file://$PROJECT_DIR$/lbs/lbs.iml" filepath="$PROJECT_DIR$/lbs/lbs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/passenger/passenger.iml" filepath="$PROJECT_DIR$/passenger/passenger.iml" />
     </modules>
   </component>
 </project>

@@ -236,8 +236,8 @@ public class MainActivity extends Activity implements IMainView {
      */
     private void showStartEnd() {
         mMapLayer.clearAllMarker();
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude), BitmapFactory.decodeResource(getResources(), R.mipmap.end));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude), BitmapFactory.decodeResource(getResources(), R.mipmap.end));
 
         mCallArea.setVisibility(View.VISIBLE);
         mBtnPay.setVisibility(View.GONE);
@@ -368,7 +368,7 @@ public class MainActivity extends Activity implements IMainView {
             mDriverMarkerBit = BitmapFactory.decodeResource(this.getResources(),
                     R.mipmap.car);
         }
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driver.getLatitude(), driver.getLongitude()), mDriverMarkerBit);
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driver.getLatitude(), driver.getLongitude()), mDriverMarkerBit);
         //
     }
 
@@ -378,7 +378,7 @@ public class MainActivity extends Activity implements IMainView {
             mDriverMarkerBit = BitmapFactory.decodeResource(this.getResources(),
                     R.mipmap.car);
         }
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driver.getLatitude(), driver.getLongitude()), mDriverMarkerBit);
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driver.getLatitude(), driver.getLongitude()), mDriverMarkerBit);
     }
 
     @Override
@@ -434,9 +434,9 @@ public class MainActivity extends Activity implements IMainView {
 
         // 起点和终点图标
 
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude), mDriverMarkerBit);
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude), mDriverMarkerBit);
 
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude), mDriverMarkerBit);
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude), mDriverMarkerBit);
 
     }
 
@@ -491,8 +491,8 @@ public class MainActivity extends Activity implements IMainView {
         mMapLayer.moveCamera(mLastLocation, driverLocation);
 
         // 起点和终点图标
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.end));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.end));
     }
 
     /**
@@ -537,9 +537,9 @@ public class MainActivity extends Activity implements IMainView {
 
 
         // 起点和终点图标
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude, 0)
-                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0), BitmapFactory.decodeResource(getResources(), R.mipmap.start));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mEndLocation.latitude, mEndLocation.longitude, 0)
+//                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
     }
 
     @Override
@@ -608,8 +608,8 @@ public class MainActivity extends Activity implements IMainView {
     }
 
     private void addMyLocation() {
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0)
-                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", mLastLocation.latitude, mLastLocation.longitude, 0)
+//                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
     }
 
     private void addDriverLocation(String key, double driverLatitude, double driverLongitude, float driverRotation) {
@@ -618,8 +618,8 @@ public class MainActivity extends Activity implements IMainView {
                     R.mipmap.car);
         }
 
-        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driverLatitude, driverLongitude, driverRotation)
-                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
+//        mMapLayer.addOrUpdateMarker(new LocationInfo("", "", driverLatitude, driverLongitude, driverRotation)
+//                , BitmapFactory.decodeResource(getResources(), R.mipmap.end));
     }
 
 }

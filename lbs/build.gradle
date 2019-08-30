@@ -50,3 +50,13 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+//task makeJar(type: Copy) {
+//    delete 'build/libs/test.jar'
+//    from('build/intermediates/bundles/release/')
+//    into('build/libs/')
+//    include('classes.jar')
+//    rename('classes.jar', 'test.jar')
+//}
+//
+//makeJar.dependsOn(build)
